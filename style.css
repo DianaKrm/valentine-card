@@ -1,0 +1,723 @@
+/* Base */
+* { box-sizing: border-box; }
+
+:root{
+  /* 30% bigger overall UI */
+  --uiScale: 1.3;
+}
+
+body{
+  margin: 0;
+  height: 100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Courier New", monospace;
+}
+
+/* pixel-ish helpers */
+.pixel{
+  font-family: "Courier New", monospace;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  
+}
+
+.pixel-small{
+  font-family: "Courier New", monospace;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 29px;
+}
+
+/* Intro envelope screen */
+
+
+
+#envelope-container{
+  position: fixed;
+  inset: 0;                 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-image: url("background\ 2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align:center;
+  cursor:pointer;
+  user-select:none;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.10); }
+  100% { transform: scale(1); }
+}
+
+#envelope{
+  width: 200px;
+  animation: pulse 1.5s infinite;
+}
+
+#envelope-container p{
+  margin-top: 14px;
+  
+}
+
+/* Game container full screen */
+#game-container{
+  display:none;
+  position:fixed;
+  inset:0;
+  align-items:center;
+  justify-content:center;
+  background-size: cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-image: url("background\ main.png");
+   
+}
+
+/* Main frame */
+.game-frame{
+  transform: scale(var(--uiScale));
+  transform-origin: center;
+
+  width: min(900px, 92vw);
+  height: min(520px, 75vh);
+
+  position: relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Screens */
+.screen{
+  width:100%;
+  height:100%;
+  display:none;
+
+  position:relative;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap: 18px;
+}
+
+.screen.active{ 
+  display:flex; 
+  
+}
+
+/* START screen */
+.start-ui{
+  
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap: 26px;
+}
+
+.pixel-title{
+  text-align:center;
+  margin-top:-16px;
+  
+}
+
+.pixel-line{
+  font-weight:900;
+  letter-spacing:6px;
+  font-size: clamp(36px, 6.5vw, 66px);
+  line-height: 0.95;
+  color: #250D52;
+  text-shadow:
+    0 3px 0 rgba(0,0,0,0.18),
+    0 6px 0 rgba(0,0,0,0.08);
+}
+
+.start-btn{
+  width: 190px;
+  cursor:pointer;
+  user-select:none;
+  image-rendering: pixelated;
+  transition: transform 0.15s ease;
+}
+.start-btn:hover{ transform: scale(1.06); }
+
+/* PLAYERS */
+.top-title{
+  font-size: clamp(22px, 3.2vw, 34px);
+  color: black;
+  text-shadow: 0 2px 0 rgba(0,0,0,0.12);
+  margin-top: -10px;
+}
+
+.players{
+  display:flex;
+  gap: 40px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.player-card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: 10px;
+}
+
+.player-label{
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.avatar-box{
+  width: 170px;
+  height: 170px;
+  background: rgba(255,255,255,0.82);
+  border-radius: 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+.avatar-box img{
+  width: 140px;
+  height:auto;
+  image-rendering: pixelated;
+}
+
+.player-name{
+  font-size: 18px;
+}
+
+/* NEXT bottom-right */
+.next-btn{
+  position:absolute;
+  right: 24px;
+  bottom: 18px;
+
+  padding: 11px 18px;
+  border:none;
+  border-radius: 999px;
+  background: #5822BD;
+  color:white;
+
+  cursor:pointer;
+  font-size: 14px;
+}
+.next-btn:hover{ filter: brightness(1.50); }
+
+/* Back button */
+.back-btn{
+  position:absolute;
+  left: 16px;
+  top: 14px;
+  z-index: 5;
+
+  padding: 8px 12px;
+  border:none;
+  border-radius:999px;
+  cursor:pointer;
+
+  background: rgba(255,255,255,0.78);
+}
+
+/* PICK ENVELOPES */
+.pick-title{
+  font-size: clamp(22px, 3.2vw, 36px);
+  margin-top: -20px;
+  text-shadow: 0 2px 0 rgba(0,0,0,0.12);
+}
+
+.envelope-row{
+  display:flex;
+  gap: 26px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.choice-envelope{
+  width: 150px;
+  cursor:pointer;
+  user-select:none;
+  transition: transform 0.15s ease;
+  image-rendering: pixelated;
+}
+.choice-envelope:hover{ transform: scale(1.05); }
+
+.pick-sub{
+  opacity: 0.85;
+  font-size: 14px;
+}
+
+/* Date? button (appears after all envelopes viewed) */
+.date-btn{
+  position:absolute;
+  right: 24px;
+  bottom: 18px;
+
+  padding: 11px 18px;
+  border:none;
+  border-radius: 999px;
+  background: #5822BD;
+  color:white;
+
+  cursor:pointer;
+  font-size: 14px;
+}
+.date-btn:hover{ filter: brightness(1.50); }
+
+.env1text{
+  font-size: 24px;
+  text-shadow: 0 2px 0 rgba(0,0,0,0.12);
+  font-weight: 700;
+  text-align: center;
+  margin-top: 70px;
+}
+
+
+
+/* SCREEN 4: congrats */
+
+.cat, .cat2, .cat1, .guy, .women{
+  height: 200px;
+  width: 200px;
+  border-radius: 12px;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25));
+  
+}
+
+.cat{
+  grid-row: 1/2;
+  grid-column: 1/2;
+  
+}
+
+.cat1{
+  grid-row: 2/3 ;
+  grid-column: 2/2;
+}
+
+.women, .cat1{
+  margin-top: 20px;
+  margin-left: 150px;
+  
+}
+
+
+
+.picsenv1{
+  display: grid;
+  justify-content: space-between;
+  justify-self: center;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr ;
+  padding-left: -100px;
+  
+}
+
+#screen-congrats{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.congrats-layer{
+  position:relative;
+  width:100%;
+  height:100%;
+}
+
+.vd-text{
+  position:absolute;
+  left:50%;
+  top:40%;
+  transform: translate(-50%, -50%);
+  width: min(580px, 78vw);
+}
+
+.cat-under{
+  position:absolute;
+  left:50%;
+  top:60%;
+  transform: translate(-50%, 0%);
+  width: min(160px, 22vw);
+  image-rendering: pixelated;
+}
+
+/* SCREEN 5: letter */
+#screen-letter{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#screen-letter.screen.active{
+  display: block !important;
+}
+
+.letter-stage{
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 60px 15px 20px 15px;
+  overflow: hidden;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter-container{
+  display: grid !important;
+  grid-template-columns: 130px 1fr 130px !important;
+  grid-template-rows: auto !important;
+  gap: 35px !important;
+  max-width: 1100px;
+  margin: 0 auto !important;
+  align-items: start !important;
+  justify-items: center !important;
+}
+
+.letter-images-left{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 18px;
+  align-items: center;
+  width: 130px;
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+}
+
+.letter-center{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 18px;
+  align-items: center;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+}
+
+.letter-images-right{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 18px;
+  align-items: center;
+  width: 130px;
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+}
+
+.env2text{
+  font-family: "Dancing Script" !important;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+  color: #2d2d2d;
+  width: 100%;
+}
+
+.env2body{
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 0;
+  color: #2d2d2d;
+  width: 100%;
+}
+
+.im1, .im2, .im3, .im4, .im5, .im6{
+  height: 130px !important;
+  width: 130px !important;
+  object-fit: cover;
+  border-radius: 12px;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25));
+  transition: transform 0.3s ease;
+  display: block !important;
+}
+
+.im1:hover, .im2:hover, .im3:hover, .im4:hover, .im5:hover, .im6:hover{
+  transform: scale(1.05);
+}
+
+.video{
+  height: 150px !important;
+  width: 150px !important;
+  object-fit: cover;
+  border-radius: 12px;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25));
+  display: block !important;
+}
+
+/* iPad (portrait and landscape) */
+@media (max-width: 1024px) {
+  .letter-container{
+    grid-template-columns: 120px 1fr 120px !important;
+    gap: 30px !important;
+  }
+  
+  .letter-images-left,
+  .letter-images-right{
+    width: 120px;
+    gap: 15px;
+  }
+  
+  .letter-center{
+    max-width: 400px;
+    gap: 15px;
+  }
+  
+  .env2text{
+    font-size: 24px;
+  }
+  
+  .env2body{
+    font-size: 13px;
+  }
+  
+  .im1, .im2, .im3, .im4, .im5, .im6{
+    height: 120px !important;
+    width: 120px !important;
+  }
+  
+  .video{
+    height: 130px !important;
+    width: 130px !important;
+  }
+}
+
+/* Smaller tablets and mobile */
+@media (max-width: 768px) {
+  .letter-stage{
+    padding: 70px 15px 30px 15px;
+    overflow-y: auto;
+  }
+  
+  .letter-container{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 25px;
+    align-items: center !important;
+  }
+  
+  .letter-images-left,
+  .letter-images-right{
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: auto;
+  }
+  
+  .letter-center{
+    max-width: 100%;
+  }
+  
+  .env2text{
+    font-size: 22px;
+  }
+  
+  .env2body{
+    font-size: 13px;
+  }
+  
+  .im1, .im2, .im3, .im4, .im5, .im6{
+    height: 110px !important;
+    width: 110px !important;
+  }
+  
+  .video{
+    height: 120px !important;
+    width: 120px !important;
+  }
+}
+
+/* SCREEN 6: RIZZ PAGE */
+#screen-rizz{
+  background-image: url("third envelope.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.rizz-header{
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(16px, 2.8vw, 26px);
+  letter-spacing: 2px;
+  text-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  z-index: 10;
+  text-align: center;
+  padding: 0 20px;
+  max-width: 90%;
+  color: #5822BD;
+  font-family: "Dancing Script";
+}
+
+.rizz-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 60px;
+  padding: 140px 40px 40px 40px;
+  flex-wrap: wrap;
+}
+
+.rizz-column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 350px;
+}
+
+.rizz-text{
+  font-size: clamp(16px, 2.5vw, 22px);
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 1.4;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 0 10px;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rizz-img1, .rizz-img2{
+  width: min(200px, 25vw);
+  height: min(200px, 25vw);
+  object-fit: cover;
+  border-radius: 12px;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+}
+
+.rizz-img1{
+  margin-top: 20px;
+}
+
+/* SCREEN 7: question */
+#screen-question{
+  background-image: url("third envelope.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.question-ui{
+  text-align:center;
+  margin-top:-10px;
+}
+
+.question-title{
+  font-size: clamp(18px, 3vw, 32px);
+  text-shadow: 0 3px 0 rgba(0,0,0,0.12);
+  margin-bottom: 22px;
+  letter-spacing: 3px;
+}
+
+.answer-row{
+  display:flex;
+  gap: 18px;
+  justify-content:center;
+  flex-wrap:wrap;
+  position: relative;
+}
+
+.pixel-btn{
+  padding: 12px 22px;
+  border:none;
+  border-radius: 14px;
+  cursor:pointer;
+
+  background: rgba(255,255,255,0.88);
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-family: "Courier New", monospace;
+  text-transform: uppercase;
+
+  width: 180px;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pixel-btn:hover{ filter: brightness(1.05); }
+
+.no-btn{
+  position: relative;
+  width: 180px;
+  height: 56px;
+}
+
+/* SCREEN 8: end */
+#screen-end{
+  background-image: url("the end.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.end-ui{
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap: 18px;
+}
+
+.end-title{
+  font-size: clamp(28px, 4.4vw, 52px);
+  letter-spacing: 6px;
+  text-shadow:
+    0 3px 0 rgba(0,0,0,0.18),
+    0 6px 0 rgba(0,0,0,0.08);
+}
+
+.cat-dance{
+  width: min(240px, 30vw);
+  image-rendering: pixelated;
+  background: transparent;
+}
+
+.play-again{
+  padding: 12px 20px;
+  border:none;
+  border-radius: 999px;
+  cursor:pointer;
+
+  background: #5822BD;
+  color:white;
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-family: "Courier New", monospace;
+  text-transform: uppercase;
+}
+.play-again:hover{ filter: brightness(1.50); }

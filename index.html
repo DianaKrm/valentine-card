@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine Game Night</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Audiowide&family=Dancing+Script:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Intro (pulsing envelope) -->
+  <div id="envelope-container" title="Click to open">
+    <img id="envelope" src="envelope purple.png" alt="Envelope" />
+    <p class="pixel-small">LETTER FOR YOU</p>
+  </div>
+
+  <!-- Game -->
+  <div id="game-container">
+    <div class="game-frame">
+
+      <!-- START SCREEN -->
+      <section id="screen-start" class="screen active">
+        <div class="start-ui">
+          <div class="pixel-title">
+            <div class="pixel-line">VALENTINE</div>
+            <div class="pixel-line">GAME NIGHT</div>
+          </div>
+
+          <img class="start-btn" id="startBtn" src="purple button.png" alt="Start" />
+        </div>
+      </section>
+
+      <!-- PLAYERS SCREEN -->
+      <section id="screen-players" class="screen">
+        <div class="top-title pixel">READY TO PLAY?</div>
+
+        <div class="players">
+          <div class="player-card">
+            <div class="player-label pixel-small">PLAYER 1</div>
+            <div class="avatar-box">
+              <img src="white cat.png" alt="Player 1" />
+            </div>
+            <div class="player-name pixel">OMAR</div>
+          </div>
+
+          <div class="player-card">
+            <div class="player-label pixel-small">PLAYER 2</div>
+            <div class="avatar-box">
+              <img src="diana cat.png" alt="Player 2" />
+            </div>
+            <div class="player-name pixel">DIANA</div>
+          </div>
+        </div>
+
+        <button id="nextBtn" class="next-btn pixel">NEXT</button>
+      </section>
+
+      <!-- PICK ENVELOPES -->
+      <section id="screen-cards" class="screen">
+        <button id="backToPlayers" class="back-btn pixel">← BACK</button>
+
+        <div class="pick-title pixel">PICK A CARD</div>
+        <div class="envelope-row">
+          <img id="env1" class="choice-envelope" src="purple closed.png" alt="Envelope 1" />
+          <img id="env2" class="choice-envelope" src="purple closed.png" alt="Envelope 2" />
+          <img id="env3" class="choice-envelope" src="purple closed.png" alt="Envelope 3" />
+        </div>
+        <div class="pick-sub pixel-small">(Click once to open, click again to enter)</div>
+
+        <!-- Date button (hidden initially, shown after all 3 envelopes viewed) -->
+        <button id="dateBtn" class="date-btn pixel" style="display: none;">DATE?</button>
+      </section>
+
+      <!-- ENVELOPE 1 => CONGRATS -->
+      <section id="screen-congrats" class="screen">
+        <button id="backFromCongrats" class="back-btn pixel">← BACK</button>
+
+        <div class="congrats-layer">
+          <p class="env1text">This is how my Valentine's days were before you...</p>
+          <div class="picsenv1">
+            <img class="cat" src="sad cat.gif" alt="sad cat">
+            <img class="cat1" src="sad cat1.jpeg" alt="sad cat1">
+            <img class="cat2" src="sad cat2.jpg" alt="sad cat 2">
+            <img class="guy" src="sad guy.jpg" alt="sad guy">
+            <img class="women" src="sad women.jpg.avif" alt="sad women">
+          </div>
+        </div>
+      </section>
+
+      <!-- ENVELOPE 2 => LETTER -->
+      <section id="screen-letter" class="screen">
+        <button id="backFromLetter" class="back-btn pixel">← BACK</button>
+        
+        <div class="letter-stage">
+          <div class="letter-container">
+            <!-- Left side images -->
+            <div class="letter-images-left">
+              <img class="im1" src="im1.JPG" alt="im1">
+              <img class="im2" src="im2.JPG" alt="im2">
+              <img class="im3" src="im3.HEIC" alt="im3">
+            </div>
+
+            <!-- Center content -->
+            <div class="letter-center">
+              <p class="env2text">Our first Valentine's Day together💖🌃</p>
+              <img class="video" src="video.MOV" alt="">
+              <p class="env2body">This was our first trip ever, and our first Valentine's Day. Of course nothing went
+                according to plan whe we were trying to celebrate that day, but it still was super fun. I was so Happy to see
+                New York for the first time with you. I wish we could trevel somewhere again and spend more time one on
+                one!!!!</p>
+            </div>
+
+            <!-- Right side images -->
+            <div class="letter-images-right">
+              <img class="im4" src="im4.HEIC" alt="im4">
+              <img class="im5" src="im5.HEIC" alt="im5">
+              <img class="im6" src="im6.HEIC" alt="im6">
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ENVELOPE 3 => RIZZ PAGE (NEW) -->
+      <section id="screen-rizz" class="screen">
+        <button id="backFromRizz" class="back-btn pixel">← BACK</button>
+
+        <div class="rizz-header pixel">
+          My Love i love you so much
+        </div>
+
+        <div class="rizz-container">
+          <div class="rizz-column">
+            <div class="rizz-text pixel">You're sooo bombastic boyfriend</div>
+            <img class="rizz-img1" src="shrek.gif" alt="Shrek GIF" />
+          </div>
+
+          <div class="rizz-column">
+            <div class="rizz-text pixel">If this is fate… it’s my favorite decision it ever made.</div>
+            <img class="rizz-img2" src="dog.gif" alt="Cat Gif" />
+          </div>
+        </div>
+      </section>
+
+      <!-- QUESTION SCREEN (now appears after Date? button) -->
+      <section id="screen-question" class="screen">
+        <button id="backFromQuestion" class="back-btn pixel">← BACK</button>
+
+        <div class="question-ui">
+          <div class="question-title pixel">WILL YOU BE MY<br />LITTLE BLACK BOY?</div>
+
+          <div class="answer-row" id="answerRow">
+            <button id="yesBtn" class="pixel-btn pixel">YES</button>
+            <button id="noBtn" class="pixel-btn pixel no-btn" type="button">NO</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- END SCREEN -->
+      <section id="screen-end" class="screen">
+        <div class="end-ui">
+          <div class="end-title pixel">GAME OVER</div>
+          <img class="cat-dance" src="cat_dance.gif" alt="Dancing Cat" />
+          <button id="playAgainBtn" class="play-again pixel">PLAY AGAIN</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
